@@ -7,6 +7,7 @@ import About from './components/about';
 import NotFound from './components/notFound';
 import Report from './components/report';
 import W1 from './components/w1';
+import RegisterForm from './components/registerForm';
 
 import './App.css';
 
@@ -23,7 +24,7 @@ function App() {
                 <Route path="/about" component={About} />
                 <Route path="/report" component={Report} />
                 <Route path="/week/1" component={W1} />
-
+                <Route path="/register" component={RegisterForm} />
                 {/* <ProtectedRoute 
                     path="/movies/:id" 
                     component={MovieForm}
