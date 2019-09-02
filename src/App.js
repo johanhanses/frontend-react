@@ -6,8 +6,9 @@ import NavBar from './components/navBar';
 import About from './components/about';
 import NotFound from './components/notFound';
 import Report from './components/report';
-import W1 from './components/w1';
+import Week from './components/week';
 import RegisterForm from './components/registerForm';
+import LoginForm from './components/loginForm';
 
 import './App.css';
 
@@ -23,8 +24,10 @@ function App() {
                 <Route exact path="/" component={Main} />
                 <Route path="/about" component={About} />
                 <Route path="/report" component={Report} />
-                <Route path="/week/1" component={W1} />
+                <Route path="/week/:id" component={Week} />
                 <Route path="/register" component={RegisterForm} />
+                <Route path="/login" component={LoginForm} />
+
                 {/* <ProtectedRoute 
                     path="/movies/:id" 
                     component={MovieForm}

@@ -15,6 +15,8 @@ class NavBar extends Component {
                         {/* <li><Link to="/report/kmom02">Kmom02</Link></li> */}
                         <li><Link to="/about">About</Link></li>
                         <li><Link to="/register">Register</Link></li>
+                        <li><Link to="/login">Login</Link></li>
+
                     </ul>
                 </nav>
                 <div className="banner">

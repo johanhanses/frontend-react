@@ -1,13 +1,16 @@
 import React from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
-// import * as userService from '../services/userService';
-// import authService from "../services/authService";
+import * as userService from '../services/userService';
+import authService from "../services/authService";
+import httpService from "../services/httpService";
+import jwtDecode from "jwt-decode";
+
 
 class RegisterForm extends Form {
     state = {
         data: {
-            username: "",
+            email: "",
             password: "",
             name: "",
             birthdate: ""
@@ -16,7 +19,7 @@ class RegisterForm extends Form {
     }
 
     schema = {
-        username: Joi.string()
+        email: Joi.string()
             .required()
             .email()
             .label("Username"),
@@ -33,42 +36,20 @@ class RegisterForm extends Form {
     };
 
 
-    async populateGenres() {
-        // const { data: dates } = await getGenres();
-        // this.setState({ dates });
-    }
-
-    // async populateMovie() {
-    //     try {
-    //         const movieId = this.props.match.params.id;
-    //         if (movieId === "new") return;
-    //         const { data: movie } = await getMovie(movieId);
-    //         this.setState({ data: this.mapToViewModel(movie) });
-    //     }
-    //     catch (ex) {
-    //         if (ex.response && ex.response.status === 404) 
-    //             this.props.history.replace("/not-found");
-    //     }
-    // }
-
-    async componentDidMount() {
-        // await this.populateGenres();
-        // await this.populateMovie();
-    }
-
     doSubmit = async () => {
-        // try {
-        //     const response = await userService.register(this.state.data);
-        //     authService.loginWithJwt(response.headers["x-auth-token"]);
-        //     window.location = "/";
-        // }
-        // catch (ex) {
-        //     if (ex.response && ex.response.status === 400) {
-        //         const errors = { ...this.state.errors };
-        //         errors.username = ex.response.data;
-        //         this.setState({ errors });
-        //     }
-        // }
+        try {
+            const response = await userService.register(this.state.data);
+            console.log(response)
+            // authService.loginWithJwt(response.headers["x-auth-token"]);
+            // window.location = "/";
+        }
+        catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                const errors = { ...this.state.errors };
+                errors.username = ex.response.data;
+                this.setState({ errors });
+            }
+        }
     }
 
     render() { 
@@ -76,7 +57,7 @@ class RegisterForm extends Form {
             <div>
                 <h2>Register</h2>
                 <form onSubmit={this.handleSubmit}>
-                    {this.renderInput("username", "Username", "email")}
+                    {this.renderInput("email", "Username", "email")}
                     {this.renderInput("password", "Password", "password")}
                     {this.renderInput("name", "Name")}
                     {this.renderInput("birthdate", "Birth date", "date")}

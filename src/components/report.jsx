@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Form from "./common/form"
 
-class Report extends Component {
+class Report extends Form {
     // constructor(props) {
     //     super(props);
     //     this.state = {
@@ -36,6 +37,8 @@ class Report extends Component {
                     <div>
                         <ul>
                             <li><Link to="/week/1">Week 1</Link></li>
+                            <br />
+                            <li><Link to="/week/2">Week 2</Link></li>
                         </ul>
                     </div>
                 </React.Fragment>
