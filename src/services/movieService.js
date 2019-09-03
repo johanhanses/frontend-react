@@ -1,29 +1,47 @@
 import httpService from "./httpService";
 import config from "../config.json";
 
-const apiEndPoint = config.apiUrl + "/movies";
+const apiEndPoint = config.apiUrl + "/reports";
 
-function movieUrl(id) {
-    return `${apiEndPoint}/${id}`;
+function reportUrl(id) {
+    return `${apiEndPoint}/week/${id}`;
 }
 
 export function getMovies() {
     return httpService.get(apiEndPoint);
 }
 
-export function getMovie(movieId) {
-    return httpService.get(movieUrl(movieId));
+export function getReport(reportId) {
+    return httpService.get(reportUrl(reportId));
 }
 // not done yet
-export function saveMovie(movie) {
-    if (movie._id) {
-        const body = { ...movie };
-        delete body._id;
-        return httpService.put(movieUrl(movie._id), body);
+export function saveReport(report) {
+    if (report.id) {
+        const body = { ...report };
+        delete body.id;
+        console.log(body);
+
+        return httpService.put(`${apiEndPoint}/${report.id}`, body,
+        {
+            headers: {
+                'x-access-token': localStorage.getItem("token")
+            }
+        }
+        );
     }
-    return httpService.post(apiEndPoint, movie);
+    return httpService.post(apiEndPoint, {
+        week: report.week,
+        writer: report.writer,
+        report: report.report
+    },
+    {
+        headers: {
+            'x-access-token': localStorage.getItem("token")
+        }
+    }
+    );
 }
 //
-export function deleteMovie(movieId) {
-    return httpService.delete(movieUrl(movieId));
+export function deleteReport(reportId) {
+    return httpService.delete(reportUrl(reportId));
 }

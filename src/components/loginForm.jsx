@@ -8,7 +8,8 @@ import authService from "../services/authService";
 class LoginForm extends Form {
     state = {
         data: { email: "", password: "" },
-        errors: {}
+        errors: {},
+        LoggedIn: ""
     }
 
     schema = {
@@ -19,8 +20,11 @@ class LoginForm extends Form {
     doSubmit = async () => {
         try {
             const { data } = this.state;
-            const response = await authService.login(data.email, data.password);
-            console.log(response);
+            // const response = 
+            await authService.login(data.email, data.password);
+
+
+            // console.log(response);
             // const { state } = this.props.location;
             // window.location = state ? state.from.pathname : "/";
             window.location = "/";

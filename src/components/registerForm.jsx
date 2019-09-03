@@ -2,9 +2,11 @@ import React from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
 import * as userService from '../services/userService';
-import authService from "../services/authService";
-import httpService from "../services/httpService";
-import jwtDecode from "jwt-decode";
+// import authService from "../services/authService";
+import { toast } from "react-toastify";
+
+// import httpService from "../services/httpService";
+// import jwtDecode from "jwt-decode";
 
 
 class RegisterForm extends Form {
@@ -35,11 +37,13 @@ class RegisterForm extends Form {
             .label("Birth date")
     };
 
-
     doSubmit = async () => {
         try {
-            const response = await userService.register(this.state.data);
-            console.log(response)
+            // const response = 
+            await userService.register(this.state.data);
+            console.log(this.state.data.name);
+            toast(`User ${this.state.data.name} is created and can now log in,`);
+
             // authService.loginWithJwt(response.headers["x-auth-token"]);
             // window.location = "/";
         }

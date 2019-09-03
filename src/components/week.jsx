@@ -26,20 +26,23 @@ class Week extends Component {
 
     async componentDidMount() {
         const result = await this.getReport(this.state.id);
-        // console.log(result.data.week[0]);
-        
-        const { week } = result.data.week[0];
-        const { writer } = result.data.week[0];
-        const { report } = result.data.week[0];
-        const { created_at } = result.data.week[0];
+        console.log(result);
+        if (result.data.week.length !== 0) {
+            const { week } = result.data.week[0];
+            const { writer } = result.data.week[0];
+            const { report } = result.data.week[0];
+            const { created_at } = result.data.week[0];
 
-        // console.log(report)
-        this.setState({ 
-            week,
-            writer,
-            report,
-            created_at
-        })
+            // console.log(report)
+            this.setState({ 
+                week,
+                writer,
+                report,
+                created_at
+            });
+        } else {
+            return null;
+        }
     }
 
     render() { 

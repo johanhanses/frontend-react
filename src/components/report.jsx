@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Form from "./common/form"
+import Form from "./common/form";
+import authService from "../services/authService"
 
 class Report extends Form {
     // constructor(props) {
@@ -10,6 +11,13 @@ class Report extends Form {
     //         kmom: props.match.params.kmom
     //     };
     // }
+
+    state = {}
+
+    componentDidMount() {
+        const user = authService.getCurrentUser();
+        this.setState({ user });
+    }
 
     // componentDidMount() {
     //     let that = this;
@@ -36,9 +44,29 @@ class Report extends Form {
                     </div>
                     <div>
                         <ul>
-                            <li><Link to="/week/1">Week 1</Link></li>
+                            {this.state.user && (
+                            <li>
+                                <Link to="/new"><span>Add a new report</span></Link>
+                            </li>)}
                             <br />
-                            <li><Link to="/week/2">Week 2</Link></li>
+                            <br />
+                            <li>
+                                <Link to="/week/1">Week 1</Link>
+                            </li>
+                            {this.state.user && (
+                            <li>
+                                <Link to="/edit/1"><span>Edit</span></Link>
+                            </li>
+                            )}
+                            <br />
+                            <li>
+                                <Link to="/week/2">Week 2</Link>
+                            </li>
+                            {this.state.user && (
+                            <li>
+                                <Link to="/edit/2"><span>Edit</span></Link>
+                            </li>
+                            )}
                         </ul>
                     </div>
                 </React.Fragment>
