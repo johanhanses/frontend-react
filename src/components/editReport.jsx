@@ -1,7 +1,7 @@
 import React from 'react';
 import Joi from "joi-browser";
 import Form from "./common/form"
-import { getReport, saveReport } from "../services/movieService";
+import { getReport, saveReport } from "../services/reportService";
 
 class EditReport extends Form {
     constructor(props) {
@@ -110,12 +110,6 @@ class EditReport extends Form {
                         Save changes 
                     </button>
                 </form>
-                {/* <form onSubmit={this.handleSubmit}>
-                    {this.renderInput("week", "Week number")}
-                    {this.renderInput("writer", "Author")}
-                    {this.renderTextarea("report", "Report", "10", "49")}
-                    {this.renderButton("Save changes")}
-                </form> */}
             </div>
         );
     }

@@ -15,7 +15,6 @@ const NavBar = ({ user }) => {
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/report">Reports</Link></li>
-                    {/* <li><Link to="/report/kmom02">Kmom02</Link></li> */}
                     <li><Link to="/about">About</Link></li>
                     {!user && (
                     <React.Fragment>
@@ -27,8 +26,6 @@ const NavBar = ({ user }) => {
                         <li><Link to="/logout">Log out</Link></li>
                         <li><span>{user.email} is currently logged in</span></li>
                     </React.Fragment> )}
-                    
-
                 </ul>
             </nav>
             <div className="banner">

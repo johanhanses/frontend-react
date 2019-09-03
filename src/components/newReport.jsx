@@ -1,7 +1,7 @@
 import React from 'react';
 import Joi from "joi-browser";
 import Form from "./common/form"
-import { getMovie, saveReport } from "../services/movieService";
+import { saveReport } from "../services/reportService";
 
 class NewReport extends Form {
     constructor(props) {
@@ -15,6 +15,7 @@ class NewReport extends Form {
             errors: {}
         }
     }
+
     schema = {
         week: Joi.number()
             .required()
@@ -26,34 +27,6 @@ class NewReport extends Form {
             .required()
             .label("Report")
     };
-
-    // async populateMovie() {
-    //     try {
-    //         const movieId = this.props.match.params.id;
-    //         if (movieId === "new") return;
-    //         const { data: movie } = await getMovie(movieId);
-    //         this.setState({ data: this.mapToViewModel(movie) });
-    //     }
-    //     catch (ex) {
-    //         if (ex.response && ex.response.status === 404) 
-    //             this.props.history.replace("/not-found");
-    //     }
-    // }
-
-    // async componentDidMount() {
-    //     await this.populateGenres();
-    //     await this.populateMovie();
-    // }
-
-    // mapToViewModel(movie) {
-    //     return {
-    //         _id: movie._id,
-    //         title: movie.title,
-    //         genreId: movie.genre._id,
-    //         numberInStock: movie.numberInStock,
-    //         dailyRentalRate: movie.dailyRentalRate
-    //     };
-    // }
 
     doSubmit = async () => {
         console.log(this.state.data)
