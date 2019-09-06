@@ -40,9 +40,7 @@ class NewReport extends Form {
                 <h2>Movie form</h2>
                 <form onSubmit={this.handleSubmit}>
                     {this.renderInput("week", "Week number")}
-                    {/* {this.renderSelect("genreId", "Genre", this.state.genres)} */}
                     {this.renderInput("writer", "Author")}
-                    {/* <textarea cols="30" rows="10"></textarea> */}
                     {this.renderTextarea("report", "Report", "10", "49")}
                     {this.renderButton("Save")}
                 </form>
